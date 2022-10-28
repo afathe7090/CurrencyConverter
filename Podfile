@@ -7,7 +7,7 @@ target 'CurrencyConverter' do
 
   # Pods for CurrencyConverter
 
-
+pod 'Resolver'
 pod 'RxSwift', '6.5.0'
 pod 'RxCocoa', '6.5.0'
 pod 'Moya/RxSwift', '~> 15.0'

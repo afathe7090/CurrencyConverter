@@ -8,10 +8,11 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import Resolver
 
 class MoneyServiceViewController: UIViewController {
    
-    private let viewModel: MoneyServiceViewModelProtocol!
+    @Injected private var viewModel: MoneyServiceViewModelProtocol
     private let bag = DisposeBag()
     
     // MARK: - OutLets
@@ -22,16 +23,12 @@ class MoneyServiceViewController: UIViewController {
     @IBOutlet weak var toCurrencySymbolsField: UITextField!
     @IBOutlet weak var fromCurrencySymbolsField: UITextField!
     
-    
     private let fromPickerView = UIPickerView()
     private let toPickerView = UIPickerView()
-    // MARK: - Init
-    init(viewModel: MoneyServiceViewModelProtocol = MoneyServiceViewModel()) {
-        self.viewModel = viewModel
-        super.init(nibName: "MoneyServiceViewController", bundle: nil)
-    }
+
     
-    required init?(coder: NSCoder) { fatalError() }
+    
+    //=======>MARK: -  Life Cycel
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -91,6 +88,7 @@ class MoneyServiceViewController: UIViewController {
             .subscribe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] curreny in
                 guard let self = self else {return}
+                print("Result Of Country is equal : \(curreny.result)")
                 self.resultLabel.text = String(curreny.result)
         }).disposed(by: bag)
     }

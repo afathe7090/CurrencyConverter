@@ -8,6 +8,7 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import Resolver
 
 protocol ViewModel{
     associatedtype Input
@@ -38,15 +39,11 @@ class MoneyServiceViewModel: MoneyServiceViewModelProtocol ,ViewModel {
     
     var input: Input = .init()
     var output: Output = .init()
+    
     private let bag = DisposeBag()
-    private let useCase = MoneyServiceUseCase()
+    private let useCase: MoneyServiceUseCase = Resolver.resolve()
     
-    
-    
-    init(){
-        
-    }
-    
+    init(){ }
     
     func viewDidLoad(){
         fetchResult()
@@ -54,20 +51,17 @@ class MoneyServiceViewModel: MoneyServiceViewModelProtocol ,ViewModel {
         swipCurrencySymbols()
     }
     
-    
     func combineFromToFields()-> Observable<(String, String)>{
         Observable.combineLatest(input.fromCurrencySymbolBehavior.asObservable()
                                  ,input.toCurrencySymbolBehavior.asObservable())
     }
     
-    
     fileprivate func swipCurrencySymbols(){
         input.swipCurrencyChange
-            .throttle(RxTimeInterval.seconds(1),
+            .throttle(RxTimeInterval.seconds(2),
                       scheduler: MainScheduler.instance)
             .subscribe(onNext: {[weak self] _ in
                 guard let self = self else {return}
-                
                 let toValue = self.input.toCurrencySymbolBehavior.value
                 let fromValue = self.input.fromCurrencySymbolBehavior.value
                 self.input.fromCurrencySymbolBehavior.accept(toValue)
@@ -75,26 +69,23 @@ class MoneyServiceViewModel: MoneyServiceViewModelProtocol ,ViewModel {
             }).disposed(by: bag)
     }
     
-    
     // Subscribe to Amount Value
     fileprivate func fetchResult(){
         Observable.combineLatest(input.amountBehavior.asObservable()
                                  ,input.fromCurrencySymbolBehavior.asObservable()
                                  ,input.toCurrencySymbolBehavior.asObservable())
-        .filter({
-            return !$0.isEmpty && !$1.isEmpty && !$2.isEmpty
-        })
-        .subscribe(onNext: { [weak self ] (amount , fromCurrency, toCurrency) in
-            guard let self = self else { return }
-            self.requestWithAmount(amount, fromCurrenct: fromCurrency, toCurrency: toCurrency)
-        }).disposed(by: bag)
+            .filter({
+                return !$0.isEmpty && !$1.isEmpty && !$2.isEmpty && $1 != $2
+            }).subscribe(onNext: { [weak self ] (amount , fromCurrency, toCurrency) in
+                guard let self = self else { return }
+                self.requestWithAmount(amount, fromCurrenct: fromCurrency, toCurrency: toCurrency)
+            }).disposed(by: bag)
     }
     
     // Synols from api to present in picker view
     fileprivate func currencySymbolsRequest(){
         useCase.symbols().subscribe(onNext: {[weak self] symbols in
             guard let self = self else {return}
-            print(symbols)
             self.output.currencySymbolsBehavior.accept(symbols)
         }).disposed(by: bag)
     }
@@ -110,3 +101,4 @@ class MoneyServiceViewModel: MoneyServiceViewModelProtocol ,ViewModel {
     
     
 }
+

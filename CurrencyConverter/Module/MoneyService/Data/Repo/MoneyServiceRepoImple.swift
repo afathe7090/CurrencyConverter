@@ -7,16 +7,13 @@
 
 import Foundation
 import RxSwift
+import Resolver
 
-class MoneyServiceImple: MoneyServiceRepo {
+class MoneyServiceRepoImple: MoneyServiceRepo {
     
-        
-    private let provider: NetworkProviding
+    @Injected private var provider: NetworkProviding
     
-    init(provider: NetworkProviding = NetworkProvider()){
-        self.provider = provider
-    }
-    
+    init(){ }
     
     func convertCurrency(to: String, from: String, amount: String) -> Observable<Currency> {
         return provider.convertCurrency(to: to, from: from, amount: amount)
@@ -25,7 +22,6 @@ class MoneyServiceImple: MoneyServiceRepo {
     func symbols() -> Observable<[String]> {
         return provider.symbols()
     }
-    
     
     
 }

@@ -7,20 +7,18 @@
 
 import Foundation
 import RxSwift
+import Resolver
 
 class MoneyServiceUseCase {
     
     
-    private let repo: MoneyServiceRepo!
+    @Injected private var repo: MoneyServiceRepo
     
-    init(repo: MoneyServiceRepo = MoneyServiceImple()) {
-        self.repo = repo
-    }
+    init() { }
     
     func convertCurrency(to: String, from: String, amount: String) -> Observable<Currency>{
         return repo.convertCurrency(to: to, from: from, amount: amount)
     }
-    
     
     func symbols()-> Observable<[String]> {
         return repo.symbols()

@@ -9,7 +9,6 @@ import Foundation
 import RxSwift
 
 protocol MoneyServiceRepo{
-    
     func symbols()-> Observable<[String]>
-    func convertCurrency(to: String, from: String, amount: String	) -> Observable<Currency>
+    func convertCurrency(to: String, from: String, amount: String) -> Observable<Currency>
 }
