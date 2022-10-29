@@ -6,8 +6,8 @@
 //
 
 import Foundation
-
+import RxSwift
 
 protocol RatedCurrencyRepo {
-    
+    func ratesCurrency()-> Observable<RatedCurrencyModel>
 }

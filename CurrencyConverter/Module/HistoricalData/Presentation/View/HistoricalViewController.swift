@@ -15,11 +15,12 @@ class HistoricalViewController: UIViewController {
     @Injected  private var viewModel: HistoricalViewModelProtocol
     private let bag = DisposeBag()
     
-    @IBOutlet weak var rattingButton: UIButton!{ didSet { rattingButton.layer.cornerRadius = 50}}
+    @IBOutlet weak var rattingButton: UIButton!{ didSet { rattingButton.layer.cornerRadius = 40}}
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.isHidden = false
         configureNibFileTableView()
         tableViewSubscribation()
         rattingBtnSubscribation()

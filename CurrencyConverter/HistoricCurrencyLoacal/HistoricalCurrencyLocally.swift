@@ -24,7 +24,7 @@ class HistoricalCurrencyLocally {
     
     
     func saveCurrencyRestult(_ currency: Currency){
-        historicalShared.append(currency)
+        historicalShared.insert(currency, at: 0)
         let encodeCurrency = JSONEncoder()
         let dataEncoding = try? encodeCurrency.encode(historicalShared)
         db.set(dataEncoding, forKey: String(describing: Currency.self))

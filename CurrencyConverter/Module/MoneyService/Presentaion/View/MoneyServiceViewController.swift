@@ -44,10 +44,16 @@ class MoneyServiceViewController: UIViewController {
         viewModel.viewDidLoad()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        setNavigationCOntroller()
+    }
+    
     
     fileprivate func setNavigationCOntroller(){
         navigationController?.navigationBar.isHidden = true
     }
+    
     
     fileprivate func pickerCurrencySymbols(){
         fromCurrencySymbolsField.inputView = fromPickerView

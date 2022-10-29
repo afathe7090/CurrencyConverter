@@ -6,8 +6,17 @@
 //
 
 import Foundation
-
+import RxSwift
+import Resolver
 
 class RatedCurrencyRepoImple: RatedCurrencyRepo {
+    
+    
+    @Injected private var provider: RatedNetworkProviding
+    
+    
+    func ratesCurrency() -> Observable<RatedCurrencyModel> {
+        return provider.readRatedCurrecy()
+    }
     
 }

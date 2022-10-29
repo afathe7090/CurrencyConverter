@@ -7,9 +7,20 @@
 
 import Foundation
 import Resolver
+import RxSwift
 
 class RatedCurrencyUseCase{
     
-    @Injected var repo: RatedCurrencyRepo
+    @Injected private var repo: RatedCurrencyRepo
+    
+    func ratesCurrency() -> Observable<RatedCurrencyModel> {
+        return repo.ratesCurrency()
+    }
+    
+    func ratesCurrencySymbolesValue() -> Observable<[String: Double]>{
+        ratesCurrency().compactMap { rated -> [String: Double] in
+            rated.rates
+        }
+    }
     
 }
