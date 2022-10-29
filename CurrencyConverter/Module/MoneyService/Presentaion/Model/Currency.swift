@@ -9,14 +9,14 @@ import Foundation
 
 
 struct Currency: Codable, Hashable{
-    var date: String
-    var result: Double
-    var query: Query?
+    let date: String
+    let result: Double
+    let query: Query?
 }
 
 struct Query: Codable, Hashable {
-    var amount: Double
-    var from:  String
-    var to: String
+    let amount: Double
+    let from:  String
+    let to: String
 }
 
