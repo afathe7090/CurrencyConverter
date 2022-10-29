@@ -44,6 +44,10 @@
 		74EC62D9290D504C00695C54 /* HistoricalCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74EC62D7290D504C00695C54 /* HistoricalCell.xib */; };
 		74EC62DC290D55E700695C54 /* RatedCurrecnctViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74EC62DA290D55E700695C54 /* RatedCurrecnctViewController.swift */; };
 		74EC62DD290D55E700695C54 /* RatedCurrecnctViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74EC62DB290D55E700695C54 /* RatedCurrecnctViewController.xib */; };
+		74EC62E0290D5D0D00695C54 /* RatedNetworkServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74EC62DF290D5D0D00695C54 /* RatedNetworkServices.swift */; };
+		74EC62E2290D5D1D00695C54 /* RatedNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74EC62E1290D5D1D00695C54 /* RatedNetworkProvider.swift */; };
+		74EC62E4290D5F9300695C54 /* RatedNetwork+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74EC62E3290D5F9300695C54 /* RatedNetwork+Injection.swift */; };
+		74EC62E8290D74F900695C54 /* Array + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74EC62E7290D74F900695C54 /* Array + Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -86,6 +90,10 @@
 		74EC62D7290D504C00695C54 /* HistoricalCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoricalCell.xib; sourceTree = "<group>"; };
 		74EC62DA290D55E700695C54 /* RatedCurrecnctViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatedCurrecnctViewController.swift; sourceTree = "<group>"; };
 		74EC62DB290D55E700695C54 /* RatedCurrecnctViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RatedCurrecnctViewController.xib; sourceTree = "<group>"; };
+		74EC62DF290D5D0D00695C54 /* RatedNetworkServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatedNetworkServices.swift; sourceTree = "<group>"; };
+		74EC62E1290D5D1D00695C54 /* RatedNetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatedNetworkProvider.swift; sourceTree = "<group>"; };
+		74EC62E3290D5F9300695C54 /* RatedNetwork+Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RatedNetwork+Injection.swift"; sourceTree = "<group>"; };
+		74EC62E7290D74F900695C54 /* Array + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array + Ext.swift"; sourceTree = "<group>"; };
 		EE269EB86603747FC9AFA8C7 /* Pods-CurrencyConverter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CurrencyConverter.debug.xcconfig"; path = "Target Support Files/Pods-CurrencyConverter/Pods-CurrencyConverter.debug.xcconfig"; sourceTree = "<group>"; };
 		FA9B6DD1FCC9311D82B190B3 /* Pods_CurrencyConverter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CurrencyConverter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -124,17 +132,10 @@
 		741D3607290B64D400E24F22 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				741D3608290B64EE00E24F22 /* HistoricalNetwork */,
+				74EC62DE290D5CF800695C54 /* RatedNetwork */,
 				7454FC83290A03C100CB5D13 /* MoneyNetork */,
 			);
 			path = Network;
-			sourceTree = "<group>";
-		};
-		741D3608290B64EE00E24F22 /* HistoricalNetwork */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = HistoricalNetwork;
 			sourceTree = "<group>";
 		};
 		741D3609290B654800E24F22 /* Data */ = {
@@ -329,6 +330,7 @@
 		7454FC552909EA9300CB5D13 /* CurrencyConverter */ = {
 			isa = PBXGroup;
 			children = (
+				74EC62E6290D74EB00695C54 /* Extension */,
 				74EC62D2290D47E500695C54 /* HistoricCurrencyLoacal */,
 				741D3607290B64D400E24F22 /* Network */,
 				74C2D75D290B1BF2003DBFAB /* AppInjection */,
@@ -508,6 +510,24 @@
 			path = HistoricalCell;
 			sourceTree = "<group>";
 		};
+		74EC62DE290D5CF800695C54 /* RatedNetwork */ = {
+			isa = PBXGroup;
+			children = (
+				74EC62DF290D5D0D00695C54 /* RatedNetworkServices.swift */,
+				74EC62E1290D5D1D00695C54 /* RatedNetworkProvider.swift */,
+				74EC62E3290D5F9300695C54 /* RatedNetwork+Injection.swift */,
+			);
+			path = RatedNetwork;
+			sourceTree = "<group>";
+		};
+		74EC62E6290D74EB00695C54 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				74EC62E7290D74F900695C54 /* Array + Ext.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		929FD26A1839512C7F4D6EFB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -654,15 +674,19 @@
 				7454FC572909EA9300CB5D13 /* AppDelegate.swift in Sources */,
 				7454FC89290A074000CB5D13 /* Currency.swift in Sources */,
 				74C2D75F290B1BFE003DBFAB /* AppInjection.swift in Sources */,
+				74EC62E4290D5F9300695C54 /* RatedNetwork+Injection.swift in Sources */,
 				74EC62D8290D504C00695C54 /* HistoricalCell.swift in Sources */,
 				741D361D290B667700E24F22 /* HistoricalViewModel.swift in Sources */,
 				7454FC7A2909F7B400CB5D13 /* MoneyServiceRepo.swift in Sources */,
 				7433AB53290CA94E00992D69 /* HistoricalInjection.swift in Sources */,
 				7433AB42290CA70000992D69 /* RatedCurrencyViewModel.swift in Sources */,
+				74EC62E0290D5D0D00695C54 /* RatedNetworkServices.swift in Sources */,
 				7433AB45290CA78B00992D69 /* RatedCurrencyRepo.swift in Sources */,
+				74EC62E2290D5D1D00695C54 /* RatedNetworkProvider.swift in Sources */,
 				741D361A290B661C00E24F22 /* HistoricalViewController.swift in Sources */,
 				7454FC592909EA9300CB5D13 /* SceneDelegate.swift in Sources */,
 				7454FC85290A03F200CB5D13 /* FixorServicesTarget.swift in Sources */,
+				74EC62E8290D74F900695C54 /* Array + Ext.swift in Sources */,
 				74A958DC290AEA7900853CE6 /* Constants.swift in Sources */,
 				7433AB4D290CA84600992D69 /* ChartInjection.swift in Sources */,
 			);

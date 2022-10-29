@@ -96,6 +96,7 @@ class MoneyServiceViewModel: MoneyServiceViewModelProtocol ,ViewModel {
             .subscribe(onNext: { [weak self] current in
                 guard let self = self else {return}
                 self.output.resultCurrenyPublisher.onNext(current)
+                HistoricalCurrencyLocally.instance.saveCurrencyRestult(current)
             }).disposed(by: bag)
     }
     

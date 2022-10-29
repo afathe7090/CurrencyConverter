@@ -15,12 +15,14 @@ class HistoricalViewController: UIViewController {
     @Injected  private var viewModel: HistoricalViewModelProtocol
     private let bag = DisposeBag()
     
+    @IBOutlet weak var rattingButton: UIButton!{ didSet { rattingButton.layer.cornerRadius = 50}}
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNibFileTableView()
         tableViewSubscribation()
+        rattingBtnSubscribation()
         viewModel.viewDidLoad()
     }
     
@@ -34,6 +36,14 @@ class HistoricalViewController: UIViewController {
         viewModel.output.historicalPublisher.asObserver().bind(to: tableView.rx.items(cellIdentifier: String(describing: HistoricalCell.self), cellType: HistoricalCell.self)) { (_ , element , cell ) in
             cell.setCellCurrency(currency: element)
         }.disposed(by: bag)
+    }
+    
+    fileprivate func rattingBtnSubscribation(){
+        rattingButton.rx.tap.subscribe(onNext: { [weak self] _ in
+            guard let self = self else {return}
+            let ratedViewCOntroller: RatedCurrecnctViewController = Resolver.resolve()
+            self.present(ratedViewCOntroller, animated: true)
+        }).disposed(by: bag)
     }
     
     

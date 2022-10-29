@@ -52,8 +52,6 @@ class MoneyServiceViewController: UIViewController {
     fileprivate func pickerCurrencySymbols(){
         fromCurrencySymbolsField.inputView = fromPickerView
         toCurrencySymbolsField.inputView = toPickerView
-        
-        HistoricalCurrencyLocally.instance.fetchOldHistorical()
     }
     
     fileprivate func bindinfToViewModel(){
@@ -101,7 +99,7 @@ class MoneyServiceViewController: UIViewController {
                 self.resultLabel.text = String(curreny.result)
                 
                 print("Result is \(curreny)")
-//                HistoricalCurrencyLocally.instance.saveCurrencyRestult(curreny)
+                HistoricalCurrencyLocally.instance.saveCurrencyRestult(curreny)
         }).disposed(by: bag)
     }
     

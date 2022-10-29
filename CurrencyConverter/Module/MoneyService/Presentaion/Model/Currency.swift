@@ -8,15 +8,15 @@
 import Foundation
 
 
-struct Currency: Codable{
-    let date: String
-    let result: Double
-    let query: Query?
+struct Currency: Codable, Hashable{
+    var date: String
+    var result: Double
+    var query: Query?
 }
 
-struct Query: Codable {
-    let amount: Double
-    let from:  String
-    let to: String
+struct Query: Codable, Hashable {
+    var amount: Double
+    var from:  String
+    var to: String
 }
 

@@ -12,11 +12,12 @@ extension Resolver: ResolverRegistering{
     public static func registerAllServices() {
         
         networkINjection()
+        ratedNetworkInjection()
         
         moneyServiceInjection()
         
         historicalInjection()
         
-        chartInjection()
+        ratedCurrencyInjection()
     }
 }

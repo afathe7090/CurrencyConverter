@@ -14,6 +14,8 @@ class HistoricalCell: UITableViewCell {
     @IBOutlet weak var resultLBL: UILabel!
     @IBOutlet weak var fromLBl: UILabel!
     
+    @IBOutlet weak var amountLBL: UILabel!
+    @IBOutlet weak var backView: UIView! { didSet {backView.layer.cornerRadius = 10}}
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -31,7 +33,7 @@ class HistoricalCell: UITableViewCell {
         toLbl.text = currency.query?.to
         fromLBl.text = currency.query?.from
         resultLBL.text = String(currency.result)
-        
+        amountLBL.text = String(currency.query!.amount)
     }
     
 }

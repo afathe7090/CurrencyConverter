@@ -31,7 +31,6 @@ class HistoricalViewModel: HistoricalViewModelProtocol , ViewModel{
     var input: Input = .init()
     var output: Output = .init()
     
-    
     private let useCase: HistoricalUseCase = Resolver.resolve()
     
     init() {

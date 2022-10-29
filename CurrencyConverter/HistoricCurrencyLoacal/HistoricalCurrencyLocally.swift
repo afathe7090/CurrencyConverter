@@ -37,14 +37,14 @@ class HistoricalCurrencyLocally {
         let jsonDecoder = JSONDecoder()
         guard let data = db.value(forKey: String(describing: Currency.self)) as? Data else {return nil}
         let historicalCUrrency =  try? jsonDecoder.decode([Currency].self, from: data)
-        return historicalCUrrency
+        return historicalCUrrency?.uniqued()
     }
     
     
-    func fetchOldHistorical(){
+    private func fetchOldHistorical(){
         if let currencies = getHistoricalCurrencyResults()  {
-//            historicalShared = currencies
-            print("All Historical Currencies is :\(currencies)")
+            historicalShared = currencies
+            print("All Historical Currencies is :\(historicalShared)")
         }
     }
 }

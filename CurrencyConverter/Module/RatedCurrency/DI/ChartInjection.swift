@@ -11,7 +11,7 @@ import Resolver
 
 extension Resolver {
     
-    static func chartInjection(){
+    static func ratedCurrencyInjection(){
         
         register {
             RatedCurrencyRepoImple()
@@ -22,7 +22,7 @@ extension Resolver {
         }
         
         register {
-            RatedCurrencyModel()
+            RatedCurrencyViewModel()
         }.implements(RatedCurrencyViewModelProtocol.self)
         
         register {

@@ -10,6 +10,7 @@ import Foundation
 
 
 struct RatedCurrencyModel: Codable {
-    
+    let base, date: String
+    let rates: [String: Double]
     
 }
