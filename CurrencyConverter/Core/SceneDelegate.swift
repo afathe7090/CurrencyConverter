@@ -19,7 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: scene)
         
         let moneyServiceController: MoneyServiceViewController = Resolver.resolve()
-        window?.rootViewController = moneyServiceController
+        window?.rootViewController = UINavigationController(rootViewController: moneyServiceController)
         
         window?.makeKeyAndVisible()
     }

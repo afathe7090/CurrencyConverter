@@ -6,12 +6,12 @@
 //
 
 import Foundation
-
+import Resolver
 
 class HistoricalUseCase {
     
     
-    private let repo: HistoricalRepo = HistoricalRepoImple()
+    @Injected private var repo: HistoricalRepo
     
     
 }

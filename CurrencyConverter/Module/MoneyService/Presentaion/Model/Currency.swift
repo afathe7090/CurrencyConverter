@@ -11,5 +11,12 @@ import Foundation
 struct Currency: Codable{
     let date: String
     let result: Double
+    let query: Query?
+}
+
+struct Query: Codable {
+    let amount: Double
+    let from:  String
+    let to: String
 }
 

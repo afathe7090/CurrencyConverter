@@ -23,6 +23,7 @@ class MoneyServiceViewController: UIViewController {
     @IBOutlet weak var toCurrencySymbolsField: UITextField!
     @IBOutlet weak var fromCurrencySymbolsField: UITextField!
     
+    @IBOutlet weak var detailsBtn: UIButton!
     private let fromPickerView = UIPickerView()
     private let toPickerView = UIPickerView()
 
@@ -33,17 +34,26 @@ class MoneyServiceViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         subscribeToResult()
+        setNavigationCOntroller()
         bindinfToViewModel()
         pickerCurrencySymbols()
         configureFromPickerViewSubscriber()
         configureToPickerViewSubscriber()
+        detailsHistorialScreenSubscribation()
         bindingFromVIewModel()
         viewModel.viewDidLoad()
     }
 
+    
+    fileprivate func setNavigationCOntroller(){
+        navigationController?.navigationBar.isHidden = true
+    }
+    
     fileprivate func pickerCurrencySymbols(){
         fromCurrencySymbolsField.inputView = fromPickerView
         toCurrencySymbolsField.inputView = toPickerView
+        
+        HistoricalCurrencyLocally.instance.fetchOldHistorical()
     }
     
     fileprivate func bindinfToViewModel(){
@@ -88,8 +98,10 @@ class MoneyServiceViewController: UIViewController {
             .subscribe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] curreny in
                 guard let self = self else {return}
-                print("Result Of Country is equal : \(curreny.result)")
                 self.resultLabel.text = String(curreny.result)
+                
+                print("Result is \(curreny)")
+//                HistoricalCurrencyLocally.instance.saveCurrencyRestult(curreny)
         }).disposed(by: bag)
     }
     
@@ -121,6 +133,13 @@ class MoneyServiceViewController: UIViewController {
         }).disposed(by: bag)
     }
     
+    fileprivate func detailsHistorialScreenSubscribation(){
+        detailsBtn.rx.tap.subscribe(onNext: {[weak self] _ in
+            guard let self = self else  { return }
+            let historivalVC: HistoricalViewController = Resolver.resolve()
+            self.navigationController?.pushViewController(historivalVC, animated: true)
+        }).disposed(by: bag)
+    }
 }
 
 extension MoneyServiceViewController{

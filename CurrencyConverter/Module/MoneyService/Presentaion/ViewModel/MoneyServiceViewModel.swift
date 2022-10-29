@@ -71,7 +71,7 @@ class MoneyServiceViewModel: MoneyServiceViewModelProtocol ,ViewModel {
     
     // Subscribe to Amount Value
     fileprivate func fetchResult(){
-        Observable.combineLatest(input.amountBehavior.asObservable()
+        Observable.zip(input.amountBehavior.asObservable()
                                  ,input.fromCurrencySymbolBehavior.asObservable()
                                  ,input.toCurrencySymbolBehavior.asObservable())
             .filter({
